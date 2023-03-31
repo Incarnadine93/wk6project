@@ -138,20 +138,22 @@ class Driver(db.Model):
 
 class Product(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(50), nullable=False, unique=True)
-    price = db.Column(db.String, nullable=False, unique=True)
-    description = db.Column(db.String, nullable=False)
-    img_url = db.Column(db.String, nullable=False)
-    category = db.Column(db.String, nullable=False)
-    rating = db.Column(db.String, nullable=False)
-    count = db.Column(db.String, nullable=False)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    name = db.Column(db.String(50))
+    price = db.Column(db.String)
+    description = db.Column(db.String)
+    img_url = db.Column(db.String)
+    category = db.Column(db.String)
+    rating = db.Column(db.String)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=True)
 
-    def __init__(self, name, price, description, img_url):
+    def __init__(self, name, price, description, img_url, category, rating, user_id):
         self.name = name
         self.price = price
         self.description = description
         self.img_url = img_url
+        self.category = category
+        self.rating = rating
+        self.user_id = user_id
 
 # new = pokemon(name, ability, front_shiny, base_atk, base_hp, base_def, user_id)
 # new.savepokemon()

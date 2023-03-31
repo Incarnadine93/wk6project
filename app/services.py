@@ -27,18 +27,18 @@ def getDriver(st):
     return driver
 
 def findproduct(product):
-    url = f'https://fakestoreapi.com/products/{product}'
+    url = f'https://dummyjson.com/products/{product}'
     response = requests.get(url)
     if response.ok:
         my_dict = response.json()
         product_dict = {}
-        product_dict["Name"] = my_dict["title"]
-        product_dict["Price"] = my_dict["price"]
-        product_dict["Description"] = my_dict["description"]
-        product_dict["img_url"] = my_dict["image"]
-        product_dict["Category"] = my_dict["category"]
-        product_dict["Rating"] = my_dict["rating"]["rate"]
-        product_dict["Count"] = my_dict["rating"]["count"]
+        product_dict["Name"] = my_dict.get("title")
+        product_dict["Price"] = my_dict.get("price")
+        product_dict["Description"] = my_dict.get("description")
+        product_dict["img_url"] = my_dict.get("thumbnail")
+        product_dict["Category"] = my_dict.get("category")
+        product_dict["Rating"] = my_dict.get("rating")
         return product_dict
-
+    else:
+        return {}
 
