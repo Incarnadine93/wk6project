@@ -135,3 +135,31 @@ class Driver(db.Model):
     def saveDriver(self):
         db.session.add(self)
         db.session.commit()
+
+class Product(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(50), nullable=False, unique=True)
+    price = db.Column(db.String, nullable=False, unique=True)
+    description = db.Column(db.String, nullable=False)
+    img_url = db.Column(db.String, nullable=False)
+    category = db.Column(db.String, nullable=False)
+    rating = db.Column(db.String, nullable=False)
+    count = db.Column(db.String, nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+
+    def __init__(self, name, price, description, img_url):
+        self.name = name
+        self.price = price
+        self.description = description
+        self.img_url = img_url
+
+# new = pokemon(name, ability, front_shiny, base_atk, base_hp, base_def, user_id)
+# new.savepokemon()
+# function to add a product to the database
+    def saveProduct(self):
+        db.session.add(self)
+        db.session.commit()
+
+    def removeProduct(self):
+        db.session.remove()
+        db.session.commit()
